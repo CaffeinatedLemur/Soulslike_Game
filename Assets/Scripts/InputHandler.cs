@@ -14,10 +14,13 @@ namespace NightBook
         public float mouseX;
         public float mouseY;
 
+        public bool b_Input;
+        public bool rollFlag;
+
         PlayerControls inputActions;
         CameraHandler cameraHandler;
 
-        private void Awake()
+        private void Start()
         {
             cameraHandler = CameraHandler.singleton;
         }
@@ -41,8 +44,8 @@ namespace NightBook
             if (inputActions == null)
             {
                 inputActions = new PlayerControls();
-                inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
-                inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+                inputActions.PLayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
+                inputActions.PLayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
             }
 
             inputActions.Enable();
@@ -56,6 +59,8 @@ namespace NightBook
         public void TickInput(float delta)
         {
             MoveInput(delta);
+            HandleRollInput(delta);
+
         }
 
         private void MoveInput(float delta)
@@ -66,6 +71,15 @@ namespace NightBook
             mouseX = cameraInput.x;
             mouseY = cameraInput.y;
 
+            
+        }
+
+        private void HandleRollInput (float delta)
+        {
+            b_Input = inputActions.PlayerAction.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+
+            if (b_Input)
+                rollFlag = true;
             
         }
     }

@@ -62,15 +62,8 @@ namespace NightBook
 
         }
 
-
-        #endregion
-
-        public void Update()
+        public void HandleMovemewnt(float delta)
         {
-            float delta = Time.deltaTime;
-
-            inputHandler.TickInput(delta);
-
             moveDirection = cameraObject.forward * inputHandler.vertical;
             moveDirection += cameraObject.right * inputHandler.horizontal;
             moveDirection.Normalize();
@@ -90,6 +83,47 @@ namespace NightBook
                 HandleRotation(delta);
             }
         }
+
+        #endregion
+
+        public void Update()
+        {
+            float delta = Time.deltaTime;
+
+            inputHandler.TickInput(delta);
+
+            HandleMovemewnt(delta);
+
+            HandleRollingAndSprinting(delta);
+        }
+
+        public void HandleRollingAndSprinting (float delta)
+        {
+            if (animatorHandler.anim.GetBool("isInteracting"))
+                return;
+
+            if (inputHandler.rollFlag)
+            {
+                moveDirection = cameraObject.forward * inputHandler.vertical;
+                moveDirection += cameraObject.right * inputHandler.horizontal;
+
+                if (inputHandler.moveAmount > 0)
+                {
+                    animatorHandler.PlayTargetAnimation("Rolling", true);
+                    moveDirection.y = 0;
+                    Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
+                    myTransform.rotation = rollRotation;
+                }
+
+                else
+                {
+                    animatorHandler.PlayTargetAnimation("Backstep", true);
+                }
+            }
+            
+        }
+
+        
     }
 }
 

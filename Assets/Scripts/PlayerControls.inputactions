@@ -16,7 +16,7 @@
                 {
                     "name": "Camera",
                     "type": "PassThrough",
-                    "id": "e40c9846-6fdf-44b6-826a-40a3a698ce00",
+                    "id": "79acf107-6025-4536-bc64-c22c7c451aea",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
@@ -80,7 +80,7 @@
                 },
                 {
                     "name": "",
-                    "id": "80581023-0105-4f65-9eec-4e4edd81955c",
+                    "id": "0a716894-4177-455e-a610-20721a6ebcdb",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "StickDeadzone",
@@ -91,12 +91,50 @@
                 },
                 {
                     "name": "",
-                    "id": "b68db11c-3a11-4b07-9496-0210d08eceac",
+                    "id": "70860fa6-4267-4f45-8dbd-1466fe838475",
                     "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "NormalizeVector2",
                     "groups": "",
                     "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player Action",
+            "id": "a761ccea-cf5d-4271-9ae0-3244a24f3256",
+            "actions": [
+                {
+                    "name": "Roll",
+                    "type": "Button",
+                    "id": "57fe981d-d68c-4be0-9c28-1f4c8e68443b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3edcfd4b-3a67-4af8-8521-e8778a3540b3",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a22a375f-4d6f-4f20-ae54-6461b2d479ad",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
