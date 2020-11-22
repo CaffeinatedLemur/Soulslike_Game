@@ -21,6 +21,9 @@ namespace NightBook
         [Header("Stats")]
         [SerializeField] float movementSpeed = 5;
         [SerializeField] float rotationSpeed = 10;
+        [SerializeField] float sprintSpeed = 7;
+
+        public bool isSprinting;
 
 
         void Start()
@@ -64,6 +67,11 @@ namespace NightBook
 
         public void HandleMovemewnt(float delta)
         {
+
+            if (inputHandler.rollFlag)
+                return;
+
+
             moveDirection = cameraObject.forward * inputHandler.vertical;
             moveDirection += cameraObject.right * inputHandler.horizontal;
             moveDirection.Normalize();
@@ -71,12 +79,20 @@ namespace NightBook
             moveDirection.y = 0;
 
             float speed = movementSpeed;
-            moveDirection *= speed;
+
+            if (inputHandler.sprintFlag)
+            {
+                speed = sprintSpeed;
+                isSprinting = true;
+                moveDirection *= speed;
+            }
+            else
+                moveDirection *= speed;
 
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
             rigidBody.velocity = projectedVelocity;
 
-            animatorHandler.UpdadeAnimatorValues(inputHandler.moveAmount, 0);
+            animatorHandler.UpdadeAnimatorValues(inputHandler.moveAmount, 0, isSprinting);
 
             if (animatorHandler.canRotate)
             {
@@ -90,10 +106,9 @@ namespace NightBook
         {
             float delta = Time.deltaTime;
 
+            isSprinting = inputHandler.b_Input;
             inputHandler.TickInput(delta);
-
             HandleMovemewnt(delta);
-
             HandleRollingAndSprinting(delta);
         }
 

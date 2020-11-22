@@ -20,6 +20,7 @@ namespace NightBook
         {
             inputhandler.isInteracting = anim.GetBool("isInteracting");
             inputhandler.rollFlag = false;
+            inputhandler.sprintFlag = false;
 
         }
     }

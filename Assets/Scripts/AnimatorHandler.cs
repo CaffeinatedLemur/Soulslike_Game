@@ -26,7 +26,7 @@ namespace NightBook
 
         }
 
-        public void UpdadeAnimatorValues (float verticalMovement, float horizontalMovement)
+        public void UpdadeAnimatorValues (float verticalMovement, float horizontalMovement, bool isSprinting)
         {
             #region Vertical
             float v = 0;
@@ -58,6 +58,12 @@ namespace NightBook
             else
                 h = 0;
             #endregion
+
+            if (isSprinting)
+            {
+                v = 2;
+                h = horizontalMovement;
+            }
 
             anim.SetFloat(vertical, v, 0.1f, Time.deltaTime);
             anim.SetFloat(horizontal, h, 0.1f, Time.deltaTime);
