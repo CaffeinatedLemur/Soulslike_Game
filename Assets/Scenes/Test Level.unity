@@ -436,6 +436,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
+  inputHandler: {fileID: 0}
+  playerLocomotion: {fileID: 0}
   canRotate: 1
 --- !u!95 &1010553161
 Animator:
@@ -469,6 +471,7 @@ GameObject:
   - component: {fileID: 1482357024}
   - component: {fileID: 1482357027}
   - component: {fileID: 1482357026}
+  - component: {fileID: 1482357028}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -556,6 +559,21 @@ MonoBehaviour:
   moveAmount: 0
   mouseX: 0
   mouseY: 0
+  b_Input: 0
+  rollFlag: 0
+  isInteracting: 0
+--- !u!114 &1482357028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482357022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097633c0fd0425e4eb88616257099734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1585475320
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,7 +1015,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951330926}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.04, y: 1.25, z: -1.79}
+  m_LocalPosition: {x: 0.04, y: 0.93, z: -1.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1846900416}

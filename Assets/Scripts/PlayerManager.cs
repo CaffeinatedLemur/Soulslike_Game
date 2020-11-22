@@ -2,17 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+namespace NightBook
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerManager : MonoBehaviour
     {
-        
+        InputHandler inputhandler;
+        Animator anim;
+
+        void Start()
+        {
+            inputhandler = GetComponent<InputHandler>();
+            anim = GetComponentInChildren<Animator>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            inputhandler.isInteracting = anim.GetBool("isInteracting");
+            inputhandler.rollFlag = false;
+
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
