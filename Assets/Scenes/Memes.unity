@@ -197,6 +197,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1223100307, guid: 2f555f287adab9e4d85015add11b68ca, type: 3}
+      propertyPath: inputHandler
+      value: 
+      objectReference: {fileID: 1463054709}
+    - target: {fileID: 1223100307, guid: 2f555f287adab9e4d85015add11b68ca, type: 3}
+      propertyPath: playerLocomotion
+      value: 
+      objectReference: {fileID: 1463054708}
     - target: {fileID: 6287790103390658936, guid: 2f555f287adab9e4d85015add11b68ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -257,7 +265,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: memes
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3254680714813098217, guid: 2f555f287adab9e4d85015add11b68ca, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2f555f287adab9e4d85015add11b68ca, type: 3}
 --- !u!1001 &908747198
 PrefabInstance:
@@ -334,6 +343,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 861935219}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1463054708 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6287790103390658885, guid: 2f555f287adab9e4d85015add11b68ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 861935219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b41f131e22a8ed14bb7f3a7dbaf7be72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1463054709 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6287790103390658884, guid: 2f555f287adab9e4d85015add11b68ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 861935219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b087f47405595d4eb01fc06202c66cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1558241283
 PrefabInstance:
   m_ObjectHideFlags: 0
