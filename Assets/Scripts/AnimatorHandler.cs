@@ -8,9 +8,12 @@ namespace NightBook
 
     public class AnimatorHandler : MonoBehaviour
     {
+
         public Animator anim;
-        public InputHandler inputHandler;
-        public PlayerLocomotion playerLocomotion;
+        InputHandler inputHandler;
+        PlayerLocomotion playerLocomotion;
+        public PlayerManager playerManager;
+
 
         int vertical;
         int horizontal;
@@ -18,6 +21,7 @@ namespace NightBook
 
         public void Initalize()
         {
+            playerManager = GetComponentInParent<PlayerManager>();
             anim = GetComponentInParent<Animator>();
             vertical = Animator.StringToHash("Vertical");
             horizontal = Animator.StringToHash("Horizontal");
@@ -78,7 +82,7 @@ namespace NightBook
 
         public void OnAnimatorMove()
         {
-            if (!inputHandler.isInteracting)
+            if (!playerManager.isInteracting)
             {
                 return;
             }

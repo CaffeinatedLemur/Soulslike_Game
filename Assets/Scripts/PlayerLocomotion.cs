@@ -6,6 +6,7 @@ namespace NightBook
 {
     public class PlayerLocomotion : MonoBehaviour
     {
+        PlayerManager playerManager;
         Transform cameraObject;
         InputHandler inputHandler;
         Vector3 moveDirection;
@@ -15,19 +16,19 @@ namespace NightBook
         [HideInInspector]
         public AnimatorHandler animatorHandler;
 
-        public new Rigidbody rigidBody;
+        public Rigidbody rigidBody;
         public GameObject normalCamera;
 
-        [Header("Stats")]
+        [Header("Movement Stats")]
         [SerializeField] float movementSpeed = 5;
         [SerializeField] float rotationSpeed = 10;
         [SerializeField] float sprintSpeed = 7;
 
-        public bool isSprinting;
 
 
         void Start()
         {
+            playerManager = GetComponent<PlayerManager>();
             rigidBody = GetComponent<Rigidbody>();
             inputHandler = GetComponent<InputHandler>();
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
@@ -83,7 +84,7 @@ namespace NightBook
             if (inputHandler.sprintFlag)
             {
                 speed = sprintSpeed;
-                isSprinting = true;
+                playerManager.isSprinting = true;
                 moveDirection *= speed;
             }
             else
@@ -92,7 +93,7 @@ namespace NightBook
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
             rigidBody.velocity = projectedVelocity;
 
-            animatorHandler.UpdadeAnimatorValues(inputHandler.moveAmount, 0, isSprinting);
+            animatorHandler.UpdadeAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
 
             if (animatorHandler.canRotate)
             {
@@ -102,15 +103,7 @@ namespace NightBook
 
         #endregion
 
-        public void Update()
-        {
-            float delta = Time.deltaTime;
-
-            isSprinting = inputHandler.b_Input;
-            inputHandler.TickInput(delta);
-            HandleMovemewnt(delta);
-            HandleRollingAndSprinting(delta);
-        }
+       
 
         public void HandleRollingAndSprinting (float delta)
         {

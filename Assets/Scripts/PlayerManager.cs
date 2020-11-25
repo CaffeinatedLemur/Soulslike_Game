@@ -6,21 +6,56 @@ namespace NightBook
 {
     public class PlayerManager : MonoBehaviour
     {
-        InputHandler inputhandler;
+        InputHandler inputHandler;
         Animator anim;
+        CameraHandler cameraHandler;
+        PlayerLocomotion playerLocomotion;
+
+        public bool isInteracting;
+        [Header("Player Flags")]
+        public bool isSprinting;
+
 
         void Start()
         {
-            inputhandler = GetComponent<InputHandler>();
+            inputHandler = GetComponent<InputHandler>();
             anim = GetComponentInChildren<Animator>();
+            playerLocomotion = GetComponent<PlayerLocomotion>();
+
+            cameraHandler = CameraHandler.singleton;
         }
 
         // Update is called once per frame
         void Update()
         {
-            inputhandler.isInteracting = anim.GetBool("isInteracting");
-            inputhandler.rollFlag = false;
-            inputhandler.sprintFlag = false;
+            float delta = Time.deltaTime;
+
+            isInteracting = anim.GetBool("isInteracting");
+            
+            inputHandler.TickInput(delta);
+
+            playerLocomotion.HandleMovemewnt(delta);
+            playerLocomotion.HandleRollingAndSprinting(delta);
+            
+        }
+
+        private void FixedUpdate()
+        {
+            float delta = Time.fixedDeltaTime;
+
+            if (cameraHandler != null)
+            {
+                cameraHandler.FollowTarget(delta);
+                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+            }
+        }
+
+        private void LateUpdate()
+        {
+            inputHandler.rollFlag = false;
+            inputHandler.sprintFlag = false;
+
+            isSprinting = inputHandler.b_Input;
 
         }
     }
