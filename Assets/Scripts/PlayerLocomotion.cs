@@ -124,6 +124,8 @@ namespace NightBook
             {
                 HandleRotation(delta);
             }
+
+
         }
 
         public void HandleRollingAndSprinting(float delta)
@@ -151,7 +153,6 @@ namespace NightBook
             }
 
         }
-
         public void HandleFalling(float delta, Vector3 moveDirection)
         {
             playerManager.isGrounded = false;
@@ -197,7 +198,7 @@ namespace NightBook
                     }
                     else
                     {
-                        animatorHandler.PlayTargetAnimation("Locomotion", true);
+                        animatorHandler.PlayTargetAnimation("Empty", true);
                         inAirTimer = 0;
                     }
                     
@@ -227,6 +228,7 @@ namespace NightBook
                 }
             }
             /*
+            
             if(playerManager.isGrounded)
             {
                 if (playerManager.isInteracting || inputHandler.moveAmount > 0)
@@ -239,6 +241,7 @@ namespace NightBook
                 }
             }
             */
+            
         }
         #endregion
 
