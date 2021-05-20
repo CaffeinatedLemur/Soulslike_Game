@@ -9,6 +9,9 @@ namespace NightBook
         WeaponHolderSlot leftHandSlot;
         WeaponHolderSlot rigtHandSlot;
 
+        DamageCollider leftHandDamageCollider;
+        DamageCollider rigtHandDamageCollider;
+
         public void Awake()
         {
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
@@ -30,11 +33,47 @@ namespace NightBook
             if (isLeft)
             {
                 leftHandSlot.LoadWeaponModel(weaponItem);
+                LoadLeftWeaponDamageCollider();
             }
             else
             {
                 rigtHandSlot.LoadWeaponModel(weaponItem);
+                LoadRigtWeaponDamageCollider();
             }
         }
+
+        #region Handle Weapon's Damage Collider
+        private void LoadLeftWeaponDamageCollider()
+        {
+            leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+        }
+
+        private void LoadRigtWeaponDamageCollider()
+        {
+            rigtHandDamageCollider = rigtHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+        }
+
+        private void OpenLeftDamageCollider()
+        {
+            leftHandDamageCollider.EnableDamageCollider();
+        }
+
+        private void OpenRigtDamageCollider()
+        {
+            rigtHandDamageCollider.EnableDamageCollider();
+        }
+
+        private void CloseLeftDamageCollider()
+        {
+            leftHandDamageCollider.DisableDamageCollider();
+        }
+
+        private void CloseRigtDamageCollider()
+        {
+            rigtHandDamageCollider.DisableDamageCollider();
+        }
+
+        #endregion
+
     }
 }

@@ -5,8 +5,7 @@ using UnityEngine;
 
 namespace NightBook
 {
-
-    public class AnimatorHandler : MonoBehaviour
+   public class AnimatorHandler : MonoBehaviour
     {
 
         public Animator anim;
@@ -80,6 +79,26 @@ namespace NightBook
             anim.CrossFade(targetAnim, 0.2f);
         }
 
+        public void CanRotate ()
+        {
+            canRotate = true;
+        }
+
+        public void StopRotation ()
+        {
+            canRotate = false;
+        }
+
+        public void EnableCombo()
+        {
+            anim.SetBool("canDoCombo", true);
+        }
+
+        public void DisableCombo()
+        {
+            anim.SetBool("canDoCombo", false);
+        }
+
         public void OnAnimatorMove()
         {
             if (!playerManager.isInteracting)
@@ -96,16 +115,5 @@ namespace NightBook
 
         }
 
-        public void CanRotate ()
-        {
-            canRotate = true;
-        }
-
-        public void StopRotation ()
-        {
-            canRotate = false;
-        }
-
-        
     }
 }

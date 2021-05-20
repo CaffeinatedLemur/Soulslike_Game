@@ -18,4 +18,5 @@ MonoBehaviour:
     type: 3}
   isUnarmed: 0
   OH_Light_Attack_1: Sword Light Attack
+  OH_Light_Attack_2: Sword Light Attack 2
   OH_Heavy_Attack_1: Sword Special Attack

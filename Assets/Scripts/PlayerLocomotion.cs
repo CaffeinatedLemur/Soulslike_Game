@@ -170,6 +170,7 @@ namespace NightBook
                 rigidBody.AddForce(moveDirection * fallingSpeed / 10f);
                 
             }
+
             Vector3 dir = moveDirection;
             dir.Normalize();
             origin = origin + dir * groundDirectionRayDistance;
@@ -177,10 +178,9 @@ namespace NightBook
             targetPosition = myTransform.position;
 
             Debug.DrawRay(origin, -Vector3.up * minimumDistanceNeededToBeginFall, Color.red, 0.1f, false);
-
             if (Physics.Raycast(origin, -Vector3.up, out hit, minimumDistanceNeededToBeginFall, ignoreForGroundCheck))
             {
-                minimumDistanceNeededToBeginFall = 0.2f;
+                //minimumDistanceNeededToBeginFall = 0.2f;
 
                 normalVector = hit.normal;
                 Vector3 tp = hit.point;
@@ -214,6 +214,7 @@ namespace NightBook
                 {
                     playerManager.isGrounded = false;
                 }
+
                 if (playerManager.isInAir == false)
                 {
                     if (playerManager.isInteracting == false)
@@ -226,6 +227,15 @@ namespace NightBook
                     rigidBody.velocity = vel * (movementSpeed / 2);
                     playerManager.isInAir = true;
                 }
+            }
+
+            if (playerManager.isInteracting || inputHandler.moveAmount > 0)
+            {
+                myTransform.position = Vector3.Lerp(myTransform.position, targetPosition, Time.deltaTime / 0.1f);
+            }
+            else
+            {
+                myTransform.position = targetPosition;
             }
             /*
             
@@ -257,3 +267,90 @@ namespace NightBook
     }
 }
 
+/*
+playerManager.isGrounded = false;
+RaycastHit hit;
+Vector3 origin = myTransform.position;
+origin.y = groudDetectionRayStartPoint;
+
+if (Physics.Raycast(origin, myTransform.forward, out hit, 0.4f))
+{
+    moveDirection = Vector3.zero;
+}
+if (playerManager.isInAir)
+{
+    rigidBody.AddForce(-Vector3.up * fallingSpeed);
+    rigidBody.AddForce(moveDirection * fallingSpeed / 10f);
+
+}
+Vector3 dir = moveDirection;
+dir.Normalize();
+origin = origin + dir * groundDirectionRayDistance;
+
+targetPosition = myTransform.position;
+
+Debug.DrawRay(origin, -Vector3.up * minimumDistanceNeededToBeginFall, Color.red, 0.1f, false);
+
+if (Physics.Raycast(origin, -Vector3.up, out hit, minimumDistanceNeededToBeginFall, ignoreForGroundCheck))
+{
+    minimumDistanceNeededToBeginFall = 0.2f;
+
+    normalVector = hit.normal;
+    Vector3 tp = hit.point;
+    playerManager.isGrounded = true;
+    targetPosition.y = tp.y;
+
+    if (playerManager.isInAir)
+    {
+        if (inAirTimer > 0.5f)
+        {
+            Debug.Log("You were in the air for " + inAirTimer);
+            animatorHandler.PlayTargetAnimation("Land", true);
+            inAirTimer = 0;
+
+        }
+        else
+        {
+            animatorHandler.PlayTargetAnimation("Empty", true);
+            inAirTimer = 0;
+        }
+
+
+        playerManager.isInAir = false;
+    }
+}
+
+else
+{
+
+    if (playerManager.isGrounded)
+    {
+        playerManager.isGrounded = false;
+    }
+    if (playerManager.isInAir == false)
+    {
+        if (playerManager.isInteracting == false)
+        {
+            animatorHandler.PlayTargetAnimation("Falling", true);
+        }
+
+        Vector3 vel = rigidBody.velocity;
+        vel.Normalize();
+        rigidBody.velocity = vel * (movementSpeed / 2);
+        playerManager.isInAir = true;
+    }
+}
+/*
+
+if(playerManager.isGrounded)
+{
+    if (playerManager.isInteracting || inputHandler.moveAmount > 0)
+    {
+        myTransform.position = Vector3.Lerp(myTransform.position, targetPosition, Time.deltaTime);
+    }
+    else
+    {
+        myTransform.position = targetPosition;
+    }
+}
+*/
