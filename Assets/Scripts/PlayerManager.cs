@@ -11,8 +11,8 @@ namespace NightBook
         CameraHandler cameraHandler;
         PlayerLocomotion playerLocomotion;
 
-        public bool isInteracting;
         [Header("Player Flags")]
+        public bool isInteracting;
         public bool isSprinting;
         public bool isInAir;
         public bool isGrounded;
